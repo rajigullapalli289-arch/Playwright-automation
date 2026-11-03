@@ -28,7 +28,7 @@ test.beforeAll(async () => {
     orderId = jsonResponeOrder.orders[0];
 })
 
-test.only('Login with api token', async ({ page }) => {
+test('Login with api token', async ({ page }) => {
    
     await page.addInitScript(value => {
         window.localStorage.setItem('token', value);
