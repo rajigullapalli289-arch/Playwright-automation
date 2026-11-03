@@ -11,7 +11,7 @@ function futureDate() {
 
 const futureDateValue = futureDate();
 
-test.only('Event Creation', async ({browser})=>
+test('Event Creation', async ({browser})=>
 {
   const context =  await browser.newContext();
   const page = await context.newPage(); 
