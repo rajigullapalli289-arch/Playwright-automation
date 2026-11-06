@@ -12,11 +12,11 @@ exports.customtest = base.test.extend(
     {
         const context = await browser.newContext();
         const page = await context.newPage();
-        const email = 'rajigullapalli289@gmail.com'
+        const email = 'email@gmail.com'
 
         await page.goto('https://rahulshettyacademy.com/client');
         await page.locator('#userEmail').fill(email);
-        await page.locator('#userPassword').fill('testCl!3nt');
+        await page.locator('#userPassword').fill('<password>');
 
         await page.locator('#login').click();
 
