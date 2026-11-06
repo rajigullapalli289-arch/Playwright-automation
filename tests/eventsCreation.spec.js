@@ -19,8 +19,8 @@ test('Event Creation', async ({browser})=>
   await page.goto('https://eventhub.rahulshettyacademy.com');
 
   //Step 1:  login
-  await page.getByLabel('Email').fill('rajigullapalli289@gmail.com');
-  await page.getByLabel('Password').fill('testD@ta9');
+  await page.getByLabel('Email').fill('email@gmail.com');
+  await page.getByLabel('Password').fill('<password>');
 
   await page.locator('#login-btn').click();
   await page.locator('[href*=bookings]').first().waitFor();
