@@ -95,7 +95,7 @@ await expect(refundResult).toContainText('Single-ticket bookings qualify for a f
 
 });
 
-test.only("Group ticket booking is NOT eligible for refund", async ({ browser }) => {
+test("Group ticket booking is NOT eligible for refund", async ({ browser }) => {
 
 // Steps 1–2 — Same as Test 1, except after navigating to the event detail page, click the + button twice to increase quantity to 3 before filling the form
 

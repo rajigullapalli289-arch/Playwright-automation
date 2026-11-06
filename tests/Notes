@@ -1,0 +1,6 @@
+https://trace.playwright.dev/ - URL to open trace zip file and view the results 
+
+For Debugging API calls within the test we can use "Debug npm script" from the command palatte after adding a breakpoint within the script and adding npm test command to package.json 
+Example: "test": "npx playwright test webAPiTest.spec.js"
+
+there is page.on() -  It sets up an event listener that listens for specific browser actions or triggers—like network requests, console logs, or page errors.
