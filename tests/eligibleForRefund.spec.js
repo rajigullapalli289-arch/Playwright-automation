@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
-const email = 'rajigullapalli289@gmail.com';
-const password = 'testD@ta9'
+const email = 'email@gmail.com';
+const password = '<password>'
 
 export async function loginAndGoToBooking(page,emailid,passwrd)
 {
