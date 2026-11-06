@@ -2,7 +2,7 @@ const base = require('@playwright/test');
 const { apiUtils } = require('./apiUtils.js');
 const { request } = require('@playwright/test');
 
-const loginPayload = { userEmail: "rajigullapalli289@gmail.com", userPassword: "testCl!3nt" };
+const loginPayload = { userEmail: "<email>", userPassword: "<password>" };
 const orderPayload = { orders: [{ country: "India", productOrderedId: "6960eae1c941646b7a8b3ed3" }] }
 
 
