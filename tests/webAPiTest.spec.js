@@ -3,7 +3,7 @@ const {apiUtils} = require('./utils/apiUtils');
 
 let response;
 
-const loginPayload = { userEmail: "rajigullapalli289@gmail.com", userPassword: "testCl!3nt" };
+const loginPayload = { userEmail: "email@gmail.com", userPassword: "<password>" };
 const orderPayload = { orders: [{ country: "India", productOrderedId: "6960eae1c941646b7a8b3ed3" }] }
 
 
