@@ -19,7 +19,7 @@ export default defineConfig({
   expect: { timeout: 40 * 1000 },
   reporter: 'html',
   use: {
-  headless: false,
+  headless: true,
   browserName: 'chromium',
   screenshot: 'on',
   trace: 'retain-on-failure', //off,on
