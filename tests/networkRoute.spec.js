@@ -1,12 +1,9 @@
 const { test, expect, request } = require("@playwright/test");
 const { apiUtils } = require("./utils/apiUtils");
+const creds = require("./utils/env");
 
 let response;
 
-const loginPayload = {
-  userEmail: "email@gmail.com",
-  userPassword: "<password>",
-};
 const orderPayload = {
   orders: [{ country: "India", productOrderedId: "6960eae1c941646b7a8b3ed3" }],
 };
@@ -14,6 +11,7 @@ const orderPayload = {
 const fakePayLoadOrders = { data: [], message: "No Orders" };
 
 test.beforeAll(async () => {
+  const loginPayload = { userEmail: creds.email, userPassword: creds.clientPassword };
   const apiContext = await request.newContext();
   const apiUtil = new apiUtils(apiContext, loginPayload);
   response = await apiUtil.createOrder(orderPayload);

@@ -1,8 +1,9 @@
 const base = require('@playwright/test');
 const { apiUtils } = require('./apiUtils.js');
 const { request } = require('@playwright/test');
+const creds = require('./env');
 
-const loginPayload = { userEmail: "<email>", userPassword: "<password>" };
+const loginPayload = { get userEmail() { return creds.email; }, get userPassword() { return creds.clientPassword; } };
 const orderPayload = { orders: [{ country: "India", productOrderedId: "6960eae1c941646b7a8b3ed3" }] }
 
 
@@ -12,11 +13,11 @@ exports.customtest = base.test.extend(
     {
         const context = await browser.newContext();
         const page = await context.newPage();
-        const email = 'email@gmail.com'
+        const email = creds.email
 
         await page.goto('https://rahulshettyacademy.com/client');
         await page.locator('#userEmail').fill(email);
-        await page.locator('#userPassword').fill('<password>');
+        await page.locator('#userPassword').fill(creds.clientPassword);
 
         await page.locator('#login').click();
 

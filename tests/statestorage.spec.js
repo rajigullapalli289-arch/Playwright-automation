@@ -1,3 +1,4 @@
+const creds = require('./utils/env');
 const{test,expect} = require('@playwright/test');
 
 let webContext;
@@ -6,11 +7,11 @@ test.beforeAll(async({browser})=> {
 
     const context = await browser.newContext();
     const page = await context.newPage();
-    const email = 'email@gmail.com'
+    const email = creds.email
 
     await page.goto('https://rahulshettyacademy.com/client');
     await page.locator('#userEmail').fill(email);
-    await page.locator('#userPassword').fill('<password>');
+    await page.locator('#userPassword').fill(creds.clientPassword);
 
     await page.locator('#login').click();
 
