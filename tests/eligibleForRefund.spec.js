@@ -1,6 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const email = 'email@gmail.com';
-const password = '<password>'
+const creds = require('./utils/env');
 
 export async function loginAndGoToBooking(page,emailid,passwrd)
 {
@@ -20,7 +19,7 @@ const context =  await browser.newContext();
 const page = await context.newPage(); 
 
 //step 1 : Login
-await loginAndGoToBooking(page, email, password);
+await loginAndGoToBooking(page, creds.email, creds.eventhubPassword);
 
 // Step 2 — Book first event with 1 ticket (default)
 
@@ -103,7 +102,7 @@ const context =  await browser.newContext();
 const page = await context.newPage(); 
 
 //step 1 : Login
-await loginAndGoToBooking(page, email, password);
+await loginAndGoToBooking(page, creds.email, creds.eventhubPassword);
 
 // Step 2 — Book first event with 1 ticket (default)
 

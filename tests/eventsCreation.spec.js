@@ -1,3 +1,4 @@
+const creds = require('./utils/env');
 const {test,expect} = require('@playwright/test');
 const nowDate = Date.now();
 let eventTitle = 'Test Event' + nowDate;
@@ -19,8 +20,8 @@ test('Event Creation', async ({browser})=>
   await page.goto('https://eventhub.rahulshettyacademy.com');
 
   //Step 1:  login
-  await page.getByLabel('Email').fill('email@gmail.com');
-  await page.getByLabel('Password').fill('<password>');
+  await page.getByLabel('Email').fill(creds.email);
+  await page.getByLabel('Password').fill(creds.eventhubPassword);
 
   await page.locator('#login-btn').click();
   await page.locator('[href*=bookings]').first().waitFor();
@@ -92,7 +93,6 @@ await page.getByPlaceholder("+91 98765 43210").fill('2224447890')
 await page.locator('.confirm-booking-btn').click();
 
 
-await page.pause();
 
 
 
