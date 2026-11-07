@@ -17,7 +17,6 @@ test('Popup Validation', async({page})=>{
     await page.locator('#confirmbtn').click();
 
     // mouse hover
-    // await page.pause();
     await page.locator('#mousehover').hover();
     await page.getByRole('link', { name: 'Reload' });
 
