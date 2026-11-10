@@ -1,6 +1,6 @@
 const { test, expect, request } = require('@playwright/test');
-const {apiUtils} = require('./utils/apiUtils');
-const creds = require('./utils/env');
+const {apiUtils} = require('../utils/apiUtils');
+const creds = require('../utils/env');
 
 let response;
 

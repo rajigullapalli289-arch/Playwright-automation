@@ -9,3 +9,13 @@ node_modules/
 
 # Local secrets
 .env
+
+# Playwright authentication state
+/state.json
+
+# macOS metadata
+.DS_Store
+
+#local files
+Notes/
+javascript assignments/

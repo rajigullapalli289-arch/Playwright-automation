@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class orderConfirmationPage {  
     constructor(page) {
         this.page = page;
@@ -5,8 +7,8 @@ class orderConfirmationPage {
         this.orderIdLabel = page.locator('label.ng-star-inserted');
     }
 
-    async getOrderConfirmationMessage() {
-        return await this.orderConfirmationMessage.textContent();
+    async verifyOrderConfirmation() {
+        await expect(this.orderConfirmationMessage).toHaveText('Thankyou for the order.');
     }
 
     async getOrderId() {

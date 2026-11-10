@@ -1,14 +1,5 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-import { on } from 'node:cluster';
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -16,15 +7,35 @@ import { on } from 'node:cluster';
 export default defineConfig({
   testDir: './tests',
   timeout: 40000,
+  workers: 8, // run tests in 8 parallel workers
+  retries: 2, // retry failed tests up to 2 times
   expect: { timeout: 40 * 1000 },
   reporter: 'html',
-  use: {
-  headless: true,
-  browserName: 'chromium',
-  screenshot: 'on',
-  trace: 'retain-on-failure', //off,on
 
-  },
-   
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        headless: !!process.env.CI,
+        browserName: 'chromium',
+        screenshot: 'on',
+        trace: 'retain-on-failure', //off,on
+        // video: 'retain-on-failure', //off,on // save video only on failure
+        // viewport: { width: 1280, height: 720 }, // for web responsive testing 
+        // ...devices['Galaxy S8'] // testing in device settings
+        // ignoreHTTPSErrors: true, // ignore HTTPS errors
+      },
+    },
+
+    {
+      name: 'webkit',
+      use: {
+        headless: true,
+        ...devices['Desktop Safari'],
+        screenshot: 'on',
+        trace: 'retain-on-failure',
+      },
+    },
+
+  ],
 });
-

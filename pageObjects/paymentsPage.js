@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class paymentsPage {
     constructor(page) {
         this.page = page;
@@ -34,6 +36,10 @@ class paymentsPage {
 
     async submitOrder() {
         await this.submitButton.click();
+    }
+
+    async verifyEmail(email) {
+        await expect(this.emailDisplay).toHaveText(email);
     }
 }
 

@@ -1,5 +1,5 @@
 const {test,expect} = require("@playwright/test")
-const creds = require('./utils/env');
+const creds = require('../utils/env');
 
 test('Purchase item', async ({browser})=> 
 {
@@ -22,7 +22,7 @@ test('Purchase item', async ({browser})=>
 
     const allProducts = await page.locator('.card-body')
     const productCount = await allProducts.count();
-    const productName = 'ZARA COAT 3'
+    const productName = 'iphone 13 pro'
     
     for(let i=0 ; i < productCount; i++){
         if(await allProducts.nth(i).locator('b').textContent() === productName) {
@@ -33,7 +33,7 @@ test('Purchase item', async ({browser})=>
 
     await page.locator("[routerlink*='cart']").click();
     await page.locator('div li').first().waitFor();
-    const productThere = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    const productThere = await page.locator("h3:has-text('iphone 13 pro')").isVisible();
     expect(productThere).toBeTruthy();
 
     //checkout 

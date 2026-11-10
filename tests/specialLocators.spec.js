@@ -1,4 +1,4 @@
-const {test,expect} = require('@playwright/test');
+const {test} = require('@playwright/test');
 
 test('Test with special locators', async({page})=>
 {

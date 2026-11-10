@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test webAPiTest.spec.js"
+    "test": "playwright test"
   },
   "keywords": [],
   "author": "",
