@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class ordersPage {
     constructor(page) {
         this.page = page;
@@ -15,8 +17,8 @@ class ordersPage {
         await orderRow.locator('.btn-primary').click();
     }
 
-    async getOrderDetails() {
-        return this.orderDetails.textContent();
+    async verifyOrderDetails(orderId) {
+        await expect(this.orderDetails).toContainText(orderId);
     }
 }
 

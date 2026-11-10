@@ -1,12 +1,6 @@
-const {test,expect} = require("@playwright/test")
-const { navigateButtons } = require('../pageObjects/navigateButtons');
-const creds = require('./utils/env');
-const { loginPage } = require('../pageObjects/loginPage');
-const { dashboardPage } = require('../pageObjects/dashboardPage');
-const { myCartPage } = require('../pageObjects/myCartPage');
-const { paymentsPage } = require('../pageObjects/paymentsPage');
-const { orderConfirmationPage } = require('../pageObjects/orderConfirmationPage');
-const { ordersPage } = require('../pageObjects/ordersPage');
+const { test } = require("@playwright/test");
+const creds = require('../utils/env');
+const { poManager } = require('../pageObjects/poManager');
 
 test('Purchase item', async ({browser})=> 
 {
@@ -15,42 +9,36 @@ test('Purchase item', async ({browser})=>
     const email = creds.email
     const password = creds.clientPassword;
 
-    await page.goto('https://rahulshettyacademy.com/client');
-    const login = new loginPage(page);
+    const po = new poManager(page);
+    const navigateButtonsInstance = po.getNavigateButtons();
+    await navigateButtonsInstance.gotoUrl();
+    const login = po.getLoginPage();
     await login.login(email, password);
     await login.waitForPageLoad();
 
-    const dashboard = new dashboardPage(page);
-    const productName = 'ZARA COAT 3';
+    const dashboard = po.getDashboardPage();
+    const productName = 'ADIDAS ORIGINAL';
     await dashboard.addProductToCart(productName);
 
-    const navigateButtonsInstance = new navigateButtons(page);
     await navigateButtonsInstance.clickCartButton();
 
-    const myCart = new myCartPage(page);
+    const myCart = po.getMyCartPage();
 
     // Verify the selected item is in the cart, then proceed to checkout.
     await myCart.purchaseItem(productName);
 
-    const payment = new paymentsPage(page);
+    const payment = po.getPaymentsPage();
     await payment.fillPaymentDetails();
-    await expect(payment.emailDisplay).toHaveText(email);
+    await payment.verifyEmail(email);
     await payment.submitOrder();
 
+    const orderConfirmation = po.getOrderConfirmationPage();
+    await orderConfirmation.verifyOrderConfirmation();
+    const orderId = await orderConfirmation.getOrderId();
 
-   //Confirm the order placement and extract order id 
+    const ordersPageInstance = po.getOrdersPage();
+    await navigateButtonsInstance.openOrders();
+    await ordersPageInstance.viewOrder(orderId);
 
-   const orderConfirmation = new orderConfirmationPage(page);
-   const orderConfirmationMessage = await orderConfirmation.getOrderConfirmationMessage();
-   const orderId = await orderConfirmation.getOrderId();
-
-   expect(orderConfirmationMessage).toBe(' Thankyou for the order. ');
-
-
-const ordersPageInstance = new ordersPage(page);
-await navigateButtonsInstance.openOrders();
-await ordersPageInstance.viewOrder(orderId);
-
-const orderVerify = await ordersPageInstance.getOrderDetails();
-expect(orderVerify.includes(orderId)).toBeTruthy();
-})
+    await ordersPageInstance.verifyOrderDetails(orderId);
+});

@@ -1,4 +1,4 @@
-const creds = require('./utils/env');
+const creds = require('../utils/env');
 const {test,expect} = require('@playwright/test');
 const nowDate = Date.now();
 let eventTitle = 'Test Event' + nowDate;

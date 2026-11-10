@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const creds = require('./utils/env');
+const creds = require('../utils/env');
 
 export async function loginAndGoToBooking(page,emailid,passwrd)
 {

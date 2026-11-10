@@ -1,4 +1,4 @@
-const creds = require('./utils/env');
+const creds = require('../utils/env');
 const{test,expect} = require('@playwright/test');
 
 let webContext;

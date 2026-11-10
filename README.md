@@ -29,13 +29,13 @@ EVENTHUB_PASSWORD=your-eventhub-password
 
 ## Run tests
 
-The `npm test` script runs only `webAPiTest.spec.js`:
+Run the full Playwright test suite:
 
 ```bash
 npm test
 ```
 
-To run the full suite:
+You can also run the Playwright CLI directly:
 
 ```bash
 npx playwright test
@@ -49,7 +49,7 @@ npx playwright test tests/uploadDownload.spec.js  # Run one spec
 npx playwright test --debug                   # Run with the Playwright Inspector
 ```
 
-The configuration runs Chromium in a visible browser window, captures screenshots, and retains traces for failed tests. The tests interact with external demo sites and may create orders or events; results depend on those sites and the account state.
+The configuration defines Chromium and WebKit projects. Local runs use both projects by default; GitHub Actions installs and runs Chromium only. To select a browser locally, use `npx playwright test --project=chromium` or `npx playwright test --project=webkit`. Tests run headlessly, capture screenshots, and retain traces for failed tests. The tests interact with external demo sites and may create orders or events; results depend on those sites and the account state.
 
 ## Review results
 
