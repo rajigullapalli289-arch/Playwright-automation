@@ -16,7 +16,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        headless: false,
+        headless: !!process.env.CI,
         browserName: 'chromium',
         screenshot: 'on',
         trace: 'retain-on-failure', //off,on
