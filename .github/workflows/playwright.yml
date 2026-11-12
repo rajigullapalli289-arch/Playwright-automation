@@ -27,3 +27,22 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+  cucumber:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    env:
+      APP_EMAIL: ${{ secrets.APP_EMAIL }}
+      CLIENT_PASSWORD: ${{ secrets.CLIENT_PASSWORD }}
+      EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Chromium
+      run: npx playwright install --with-deps chromium
+    - name: Run Cucumber tests
+      run: npm run cucumber
