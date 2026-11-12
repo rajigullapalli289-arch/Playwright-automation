@@ -13,7 +13,7 @@ export async function loginAndGoToBooking(page,emailid,passwrd)
   expect(elementVisible).toBeTruthy();
 };
 
-test("Single ticket booking is eligible for refund", async ({ browser }) => {
+test(" @regression Single ticket booking is eligible for refund", async ({ browser }) => {
 
 const context =  await browser.newContext();
 const page = await context.newPage(); 

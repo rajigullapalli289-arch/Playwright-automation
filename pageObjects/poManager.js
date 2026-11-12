@@ -5,6 +5,7 @@ const { myCartPage } = require('./myCartPage');
 const { paymentsPage } = require('./paymentsPage');
 const { orderConfirmationPage } = require('./orderConfirmationPage');
 const { ordersPage } = require('./ordersPage');
+const { automationPracticePage } = require('./automationPracticePage');
 
 class poManager {
     constructor(page) {
@@ -16,6 +17,7 @@ class poManager {
         this.paymentsPage = new paymentsPage(page);
         this.orderConfirmationPage = new orderConfirmationPage(page);
         this.ordersPage = new ordersPage(page);
+        this.automationPracticePage = new automationPracticePage(page);
     }
 
     getLoginPage() {
@@ -33,6 +35,10 @@ class poManager {
     getOrdersPage() {
         return this.ordersPage;
     }   
+
+    getAutomationPracticePage() {
+        return this.automationPracticePage;
+    }
 
     getOrderConfirmationPage() {
         return this.orderConfirmationPage;

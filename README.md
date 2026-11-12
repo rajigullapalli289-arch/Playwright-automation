@@ -30,9 +30,10 @@ npx playwright test --project=chromium        # Run Chromium only
 npx playwright test --project=webkit          # Run WebKit only
 npx playwright test tests/uploadDownload.spec.js  # Run one spec
 npx playwright test --debug                   # Debug with Playwright Inspector
+npm run cucumber                              # Run Cucumber feature scenarios
 ```
 
-Local Chromium runs with a visible browser; WebKit runs headlessly. GitHub Actions runs the Chromium project only.
+Local Chromium runs with a visible browser; WebKit runs headlessly. GitHub Actions runs Playwright on Chromium and runs Cucumber scenarios in a separate Chromium job. Configure the `APP_EMAIL`, `CLIENT_PASSWORD`, and `EVENTHUB_PASSWORD` GitHub secrets for scenarios that log in.
 
 ## Review results
 
